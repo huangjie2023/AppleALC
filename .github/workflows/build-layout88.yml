@@ -1,0 +1,55 @@
+name: Build CX8400 Layout88
+
+on:
+  push:
+    branches: [ sf313-cx8400-88 ]
+  workflow_dispatch:
+
+env:
+  PROJECT_TYPE: KEXT
+
+jobs:
+  build:
+    name: Build (x86_64 Release)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: acidanthera/MacKernelSDK
+          path: MacKernelSDK
+
+      - name: CI Bootstrap
+        run: |
+          src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/acidanthera/ocbuild/master/ci-bootstrap.sh) && eval "$src" || exit 1
+
+      - name: Lilu Bootstrap
+        run: |
+          src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/acidanthera/Lilu/master/Lilu/Scripts/bootstrap.sh) && eval "$src" || exit 1
+
+      - name: Verify layout88 resources
+        run: |
+          echo "--- CX8400 files ---"
+          ls -l Resources/CX8400
+          echo "--- layout88 LayoutID ---"
+          grep -A1 'LayoutID' Resources/CX8400/layout88.xml | head -4
+          echo "--- Platforms88 input pin ---"
+          grep -A1 'NodeID' Resources/CX8400/Platforms88.xml | grep integer | head -6
+
+      - name: Build
+        run: xcodebuild -jobs 1 -configuration Release -arch x86_64
+
+      - name: Verify embedded resources
+        run: |
+          if grep -q 'layout88.xml.zlib' AppleALC/kern_resources.cpp; then
+            echo "layout88 embedded OK"
+          else
+            echo "layout88 NOT embedded"; exit 1
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AppleALC-layout88
+          path: build/*/*.zip
