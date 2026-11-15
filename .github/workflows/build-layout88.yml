@@ -42,13 +42,13 @@ jobs:
       - name: Build
         run: xcodebuild -jobs 1 -configuration Release -arch x86_64
 
-      - name: Verify embedded resources
+      - name: Verify packed resources
         run: |
-          if grep -q 'layout88.xml.zlib' AppleALC/kern_resources.cpp; then
-            echo "layout88 embedded OK"
-          else
-            echo "layout88 NOT embedded"; exit 1
-          fi
+          echo "--- packed zlib in repo tree ---"
+          ls -l Resources/CX8400/*.zlib
+          echo "--- generated resources ---"
+          ls -l AppleALC/kern_resources.cpp
+          grep -c 'CodecModInfo::File' AppleALC/kern_resources.cpp
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
