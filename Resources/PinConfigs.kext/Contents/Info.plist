@@ -34,30 +34,6 @@
 					AwAAAA==
 					</data>
 					<key>Codec</key>
-					<string>Conexant CX8400</string>
-					<key>CodecID</key>
-					<integer>351346896</integer>
-					<key>ConfigData</key>
-					<data>
-					AWccEAFnHRABZx4hAWcfBAF3HPABdx0AAXce
-					AAF3H0ABhxzwAYcdAAGHHgABhx9AAZccIAGX
-					HRABlx6BAZcfBAGnHDABpx0BAacepgGnH5AB
-					1xxAAdcdAQHXHhcB1x+ZAecc8AHnHQAB5x4A
-					AecfQAH3HPAB9x0AAfceAAH3H0ACFxzwAhcd
-					AAIXHgACFx9AAmcc8AJnHQACZx4AAmcfQAJ3
-					HPACdx0AAnceAAJ3H0ABZwwCAdcMAg==
-					</data>
-					<key>FuncGroup</key>
-					<integer>1</integer>
-					<key>LayoutID</key>
-					<integer>12</integer>
-				</dict>
-				<dict>
-					<key>AFGLowPowerState</key>
-					<data>
-					AwAAAA==
-					</data>
-					<key>Codec</key>
 					<string>Conexant CX11970 (CX8400) for Acer Swift 3 SF313 (Ice Lake) by b0ltun</string>
 					<key>CodecID</key>
 					<integer>351346896</integer>
@@ -74,32 +50,6 @@
 					<key>WakeConfigData</key>
 					<data>
 					AXcMAgFnDAIBlwckAacHJA==
-					</data>
-					<key>WakeVerbReinit</key>
-					<true/>
-				</dict>
-				<dict>
-					<key>AFGLowPowerState</key>
-					<data>
-					AwAAAA==
-					</data>
-					<key>Codec</key>
-					<string>Conexant CX8400 for Zbook G5 - theroadw</string>
-					<key>CodecID</key>
-					<integer>351346896</integer>
-					<key>ConfigData</key>
-					<data>
-					AWccEAFnHRABZx4hAWcfBAFnDAIBlxwgAZcd
-					EAGXHoEBlx8EAaccMAGnHQEBpx6mAacfkAHX
-					HEAB1x0BAdceFwHXH5kB1wwCAZcHJA==
-					</data>
-					<key>FuncGroup</key>
-					<integer>1</integer>
-					<key>LayoutID</key>
-					<integer>14</integer>
-					<key>WakeConfigData</key>
-					<data>
-					AWcMAgHXDAIBlwck
 					</data>
 					<key>WakeVerbReinit</key>
 					<true/>

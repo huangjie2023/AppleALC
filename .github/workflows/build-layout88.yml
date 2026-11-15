@@ -44,10 +44,12 @@ jobs:
           fi
           echo "--- PinConfigs entries ---"
           /usr/libexec/PlistBuddy -c "Print :IOKitPersonalities:as.vit9696.AppleALC:HDAConfigDefault" Resources/PinConfigs.kext/Contents/Info.plist 2>/dev/null | head -4
-          echo "--- layout88 LayoutID ---"
-          grep -A1 'LayoutID' Resources/CX8400/layout88.xml | head -4
-          echo "--- Platforms88 input pin ---"
-          grep -A1 'NodeID' Resources/CX8400/Platforms88.xml | grep integer | head -6
+          echo "--- CX8400 resource files ---"
+          ls -l Resources/CX8400/
+          echo "--- layout13 LayoutID ---"
+          grep -A1 'LayoutID' Resources/CX8400/layout13.xml | head -4 || true
+          echo "--- Platforms13 input pin (expect 19 then 26) ---"
+          grep -A1 'NodeID' Resources/CX8400/Platforms13.xml | grep integer | head -8 || true
 
       - name: Build
         run: xcodebuild -jobs 1 -configuration Release -arch x86_64
