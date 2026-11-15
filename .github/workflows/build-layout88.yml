@@ -36,9 +36,14 @@ jobs:
           ls -p Resources
           echo "--- codec dirs ---"
           ls -p Resources | grep / | tr '\n' ' '; echo
-          if [ "$(ls -p Resources | grep / | wc -l)" -ne 1 ]; then
+          if [ "$(ls -p Resources | grep / | grep -v '\.kext/' | wc -l)" -ne 1 ]; then
             echo "expected exactly 1 codec directory"; exit 1
           fi
+          if [ ! -d Resources/PinConfigs.kext ]; then
+            echo "Resources/PinConfigs.kext missing"; exit 1
+          fi
+          echo "--- PinConfigs entries ---"
+          /usr/libexec/PlistBuddy -c "Print :IOKitPersonalities:as.vit9696.AppleALC:HDAConfigDefault" Resources/PinConfigs.kext/Contents/Info.plist 2>/dev/null | head -4
           echo "--- layout88 LayoutID ---"
           grep -A1 'LayoutID' Resources/CX8400/layout88.xml | head -4
           echo "--- Platforms88 input pin ---"
